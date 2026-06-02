@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebXR Scene - Left and Right Models</title>
+    <title>WebXR Scene - Fixed Models</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
 </head>
 <body>
 
@@ -15,22 +16,24 @@
             <a-asset-item id="model-right" src="unu.glb"></a-asset-item>
         </a-assets>
 
-        <a-sky color="#ECECEC"></a-sky>
-        <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
+        <a-entity environment="preset: forest; lighting: point; lightPosition: 0 5 0;"></a-entity>
 
         <a-gltf-model 
             src="#model-left" 
-            position="-2.5 0 -4" 
-            scale="1 1 1">
+            position="-3 0.5 -4" 
+            scale="10 10 10">
         </a-gltf-model>
 
         <a-gltf-model 
             src="#model-right" 
-            position="2.5 0 -4" 
-            scale="1 1 1">
-        </a-gltf-model>
+            position="3 0.5 -4" 
+            scale="1 1 1"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+            </a-gltf-model>
 
-        <a-entity camera look-controls position="0 1.6 0"></a-entity>
+        <a-entity id="rig" position="0 0 0">
+            <a-camera look-controls wasd-controls position="0 1.6 0"></a-camera>
+        </a-entity>
 
     </a-scene>
 
